@@ -15,7 +15,7 @@ pinia.use(function ({ store }) {
     store.$state = JSON.parse(local);
   }
 
-  store.$subscripe(({ storeId: id }, state) => {
+  store.$subscribe(({ storeId: id }, state) => {
     localStorage.setItem(id + "PINIA_STATE", JSON.stringify(state));
   });
 });

@@ -1,6 +1,8 @@
 // 存的是createPinia这个ap
 import { ref, effectScope } from "vue";
 import { piniaSymbol } from "./rootStore";
+export let activePinia; // 全局变量
+export const setActivePinia = (pinia) => (activePinia = pinia);
 export function createPinia() {
   const scope = effectScope();
   const state = scope.run(() => ref({})); // 用来存储每个store的state的
@@ -13,6 +15,7 @@ export function createPinia() {
       _p.push(plugins);
       return this;
     },
+    _p,
     _s: new Map(), // 这里用这个map来存放所有的store   {counter1-> store,counter2-> store}
     _e: scope,
     install(app) {
